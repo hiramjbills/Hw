@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hood Dog Pile 🐕</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{
+  --bg:#0b0b0b;
+  --grid:#141414;
+  --dog:#c68642;
+  --dog-head:#ffb347;
+  --snack:#ff3030;
+  --text:#ededed;
+  --accent:#ffd000;
+}
+
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto}
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#111,#000);
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  max-width:420px;
+  width:100%;
+}
+
+h1{
+  margin:0;
+  text-align:center;
+  font-size:28px;
+}
+
+.subtitle{
+  text-align:center;
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:10px;
+}
+
+.info{
+  display:flex;
+  justify-content:space-between;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+canvas{
+  width:100%;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--grid),
+      var(--grid) 19px,
+      #000 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--grid),
+      var(--grid) 19px,
+      #000 20px
+    );
+  border-radius:12px;
+  image-rendering:pixelated;
+}
+
+.controls{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+}
+
+.controls button{
+  padding:14px;
+  background:#141414;
+  color:var(--text);
+  border:1px solid #222;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:700;
+}
+
+.controls button:active{background:#1e1e1e}
+
+.footer{
+  text-align:center;
+  margin-top:8px;
+  font-size:12px;
+  color:#888;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>HOOD DOG PILE</h1>
+  <div class="subtitle">
+    every snack adds another dog.  
+    eventually: too many dogs.
+  </div>
+
+  <div class="info">
+    <div>Dogs: <span id="score">1</span></div>
+    <div>Record Pile: <span id="high">1</span></div>
+  </div>
+
+  <canvas id="game" width="400" height="400"></canvas>
+
+  <div class="controls">
+    <div></div>
+    <button onclick="setDir(0,-1)">⬆️</button>
+    <div></div>
+    <button onclick="setDir(-1,0)">⬅️</button>
+    <button onclick="resetGame()">🐾</button>
+    <button onclick="setDir(1,0)">➡️</button>
+    <div></div>
+    <button onclick="setDir(0,1)">⬇️</button>
+    <div></div>
+  </div>
+
+  <div class="footer">don’t crash the dogs into themselves</div>
+</div>
+
+<script>
+const c = document.getElementById("game");
+const x = c.getContext("2d");
+const box = 20;
+const grid = c.width / box;
+
+let dogs, dir, snack, speed, loop;
+let high = localStorage.getItem("dogPileHigh") || 1;
+document.getElementById("high").textContent = high;
+
+function resetGame(){
+  dogs = [{x:10,y:10}];
+  dir = {x:1,y:0};
+  snack = dropSnack();
+  speed = 150;
+  updateScore();
+  clearInterval(loop);
+  loop = setInterval(tick, speed);
+}
+
+function dropSnack(){
+  return {
+    x: Math.floor(Math.random()*grid),
+    y: Math.floor(Math.random()*grid)
+  };
+}
+
+function setDir(dx,dy){
+  if(-dx===dir.x && -dy===dir.y) return;
+  dir={x:dx,y:dy};
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowUp")setDir(0,-1);
+  if(e.key==="ArrowDown")setDir(0,1);
+  if(e.key==="ArrowLeft")setDir(-1,0);
+  if(e.key==="ArrowRight")setDir(1,0);
+});
+
+function updateScore(){
+  document.getElementById("score").textContent = dogs.length;
+}
+
+function tick(){
+  const head={
+    x:dogs[0].x+dir.x,
+    y:dogs[0].y+dir.y
+  };
+
+  if(
+    head.x<0||head.y<0||
+    head.x>=grid||head.y>=grid||
+    dogs.some(d=>d.x===head.x&&d.y===head.y)
+  ){
+    if(dogs.length>high){
+      high=dogs.length;
+      localStorage.setItem("dogPileHigh",high);
+      document.getElementById("high").textContent=high;
+    }
+    resetGame();
+    return;
+  }
+
+  dogs.unshift(head);
+
+  if(head.x===snack.x&&head.y===snack.y){
+    snack=dropSnack();
+    speed=Math.max(60,speed-7); // FASTER EVERY DOG
+    clearInterval(loop);
+    loop=setInterval(tick,speed);
+  } else {
+    dogs.pop();
+  }
+
+  draw();
+  updateScore();
+}
+
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+
+  // snack (bone)
+  x.fillStyle="var(--snack)";
+  x.fillRect(snack.x*box,snack.y*box,box,box);
+
+  dogs.forEach((d,i)=>{
+    x.fillStyle=i===0?"var(--dog-head)":"var(--dog)";
+    x.fillRect(d.x*box,d.y*box,box,box);
+
+    // eyes for head (because funny)
+    if(i===0){
+      x.fillStyle="#000";
+      x.fillRect(d.x*box+5,d.y*box+6,3,3);
+      x.fillRect(d.x*box+12,d.y*box+6,3,3);
+    }
+  });
+}
+
+resetGame();
+</script>
+</body>
+</html>
+

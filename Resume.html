@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiram Bills | Professional Resume</title>
+
+    <style>
+        :root {
+            --byu-blue: #002E5D;
+            --accent: #005EB8;
+            --light-gray: #f4f6f8;
+            --dark-gray: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background-image: 
+                linear-gradient(
+                    rgba(0, 46, 93, 0.75), 
+                    rgba(0, 46, 93, 0.75)
+                ),
+                url("byu-campus.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            color: white;
+            padding: 90px 20px;
+            text-align: center;
+
+            /* New premium accent border */
+            border-bottom: 6px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Premium look */
+        }
+
+        header h2 {
+            font-weight: 300;
+            margin-top: 10px;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        header p {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 40px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h3 {
+            color: var(--byu-blue);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .job {
+            margin-bottom: 25px;
+        }
+
+        .job-title {
+            font-weight: bold;
+            color: var(--byu-blue);
+        }
+
+        .job-meta {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-box {
+            background-color: var(--light-gray);
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Hiram Bills</h1>
+    <h2>Entrepreneurship Student | Sales Professional | Leader</h2>
+    <p>Brigham Young University – Marriott School of Management</p>
+</header>
+
+<div class="container">
+
+    <!-- CONTACT -->
+    <section>
+        <h3>Contact Information</h3>
+        <div class="info-grid">
+            <div><strong>Location:</strong> Provo, Utah</div>
+            <div><strong>Email:</strong> HiramBills@outlook.com</div>
+            <div><strong>Phone:</strong> (986) 219-6446</div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+        <h3>Education</h3>
+        <p><strong>Brigham Young University – Marriott School of Management</strong></p>
+        <p>Major: Entrepreneurship | Minor: Portuguese</p>
+        <ul>
+            <li>Creator’s Club: Created, assessed, and tested innovative business ideas</li>
+            <li>Relevant Coursework: Introduction to Information Systems, Portuguese 321, American Heritage</li>
+        </ul>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+        <h3>Professional Experience</h3>
+
+        <div class="job">
+            <div class="job-title">Sales Representative – Blue Raven Solar</div>
+            <div class="job-meta">February 2023 – August 2023</div>
+            <ul>
+                <li>Generated solar panel appointments through direct outreach</li>
+                <li>Trained and motivated new sales representatives</li>
+                <li>Developed persuasion, communication, and relationship-building skills</li>
+                <li>Engaged with hundreds of new people weekly to create opportunities</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-title">Fast Food Manager – Arby’s</div>
+            <div class="job-meta">May 2020 – February 2023</div>
+            <ul>
+                <li>Managed teams of 4–9 employees per shift</li>
+                <li>Resolved customer and operational issues efficiently</li>
+                <li>Handled cash flow and revenue tracking for the store</li>
+                <li>Strengthened leadership and problem-solving skills</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section>
+        <h3>Service & Leadership</h3>
+
+        <div class="job">
+            <div class="job-title">F.H.E. Activity Leader</div>
+            <div class="job-meta">November 2025 – Present</div>
+            <ul>
+                <li>Organized and led weekly activities for a group of 14 individuals</li>
+                <li>Improved group participation and cohesion</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-title">Full-Time Missionary – Brazil</div>
+            <div class="job-meta">August 2023 – August 2025</div>
+            <ul>
+                <li>Served communities through teaching, service, and leadership</li>
+                <li>Achieved fluency in Portuguese through daily immersion</li>
+                <li>Set and met performance goals weekly and monthly</li>
+                <li>Developed discipline, interpersonal skills, and cultural empathy</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+        <h3>Skills, Awards & Interests</h3>
+        <div class="skills">
+            <div class="skill-box">Sales & Persuasion</div>
+            <div class="skill-box">Leadership</div>
+            <div class="skill-box">Entrepreneurship</div>
+            <div class="skill-box">Fluent in Portuguese</div>
+            <div class="skill-box">Goal Setting & Execution</div>
+            <div class="skill-box">Eagle Scout – BSA</div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    © 2025 Hiram Bills | Professional Resume Website
+</footer>
+
+</body>
+</html>

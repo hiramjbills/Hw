@@ -1,0 +1,80 @@
+body{
+    background-color: black;
+    font-family:cursive
+}
+H1{
+    color:aqua;
+    text-align: center;
+    font-weight: bold;
+}
+H2{
+    color:antiquewhite;
+    text-decoration: underline;
+    text-align: right;
+    font-style: italic;
+
+}
+H3{
+    color: red;
+}
+H4{
+    color: chartreuse;
+}
+p{
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+#top{
+
+}
+.fancy{
+    color: green;
+}
+.common{
+    background-color: grey;
+    border: 2px solid white;
+    position:absolute;
+}
+.header{
+    top:5px;
+    left: 15px;
+    right:25px;
+    height:100px;
+}
+.left{
+    top:115px;
+    left:15px;
+    width: 100px;
+    bottom: 40px;
+    /* height:fit-content; */
+}
+.right{
+    top:115px;
+    right:25px;
+    width:100px;
+    bottom: 40px;
+    /* height:fit-content; */
+
+}
+.main{
+    top:115px;
+    left:130px;
+    right:140px;
+    height:fit-content;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+.footer{
+    right:25px;
+    left:15px;
+    height:25px;
+    bottom:5px;
+
+    position: fixed;
+    z-index:1 ;
+}
+.redtext{
+    color: red;
+}
+.purpletext{
+    color:purple;
+}
